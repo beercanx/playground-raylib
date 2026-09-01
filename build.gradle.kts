@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application") version "9.3.2"
+    id("com.android.application") version "9.4.0"
 }
 
 repositories {
@@ -14,7 +14,7 @@ buildscript {
     // Review these on each update of the AGP (com.android.application)
     gradle.extra["securityBoms"] = listOf(
         "org.bouncycastle:bc-jdk18on-bom:1.85.2",
-        "io.netty:netty-bom:4.1.137.Final",
+        "io.netty:netty-bom:4.2.17.Final",
     )
     gradle.extra["securityPatches"] = listOf(
         "org.apache.httpcomponents:httpmime:4.5.14",
