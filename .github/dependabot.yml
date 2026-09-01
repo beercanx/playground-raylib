@@ -1,0 +1,27 @@
+version: 2
+updates:
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      all-github-actions:
+        patterns:
+          - "*"
+
+  # Maintain dependencies in Gradle module
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      security-updates-gradle-dependencies:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      version-updates-gradle-dependencies:
+        applies-to: version-updates
+        patterns:
+          - "*"
