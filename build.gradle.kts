@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application") version "8.1.2"
+    id("com.android.application") version "9.3.2"
 }
 
 repositories {
@@ -15,22 +15,22 @@ java {
 }
 
 android {
-    compileSdk = 33
-    ndkVersion = "26.0.10792818"
+    compileSdk = 35
+    ndkVersion = "28.2.13676358"
     namespace = "uk.co.baconi.playground.raylib"
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         minSdk = 26
-        targetSdk = 33
-        versionCode = 2
-        versionName = "0.0.2"
+        targetSdk = 35
+        versionCode = 3
+        versionName = "0.0.3"
         externalNativeBuild {
             cmake {
                 arguments += listOf("-DPLATFORM=Android")
                 targets += listOf("playground_raylib")
             }
-        }
-        ndk {
-            abiFilters += listOf("x86", "x86_64", "arm64-v8a") // Excluding 'armeabi-v7a' as raylib 5.0 fails to compile
         }
     }
     externalNativeBuild {
