@@ -1,6 +1,6 @@
 # Playground Raylib
 
-Playing around with Raylib v4, attempting a single project to support desktop (Windows|Linux), mobile (Android) and
+Playing around with Raylib v6, attempting a single project to support desktop (Windows|Linux), mobile (Android) and
 web (HTML).
 
 * https://www.raylib.com
@@ -68,5 +68,5 @@ profile named `Android` using the same toolchain as the desktop, with these cmak
 -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}\build\cmake\android.toolchain.cmake
 -DPLATFORM=Android
 -DANDROID_ABI=x86
--DANDROID_PLATFORM=android-33
+-DANDROID_PLATFORM=android-35
 ```
