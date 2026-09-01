@@ -14,7 +14,7 @@ buildscript {
     // Review these on each update of the AGP (com.android.application)
     gradle.extra["securityBoms"] = listOf(
         "org.bouncycastle:bc-jdk18on-bom:1.85.2",
-        "io.netty:netty-bom:4.1.136.Final",
+        "io.netty:netty-bom:4.1.137.Final",
     )
     gradle.extra["securityPatches"] = listOf(
         "org.apache.httpcomponents:httpmime:4.5.14",
