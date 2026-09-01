@@ -8,6 +8,49 @@ repositories {
     google()
 }
 
+// Security Patching: See https://gist.github.com/beercanx/6ca37d54e17137189e33a63a029ef1c2
+buildscript {
+
+    // Review these on each update of the AGP (com.android.application)
+    gradle.extra["securityBoms"] = listOf(
+        "org.bouncycastle:bc-jdk18on-bom:1.85.2",
+        "io.netty:netty-bom:4.1.136.Final",
+    )
+    gradle.extra["securityPatches"] = listOf(
+        "org.apache.httpcomponents:httpmime:4.5.14",
+        "org.apache.httpcomponents:httpclient:4.5.14",
+        "org.apache.commons:commons-lang3:3.20.0",
+        "org.jdom:jdom2:2.0.6.1",
+        "org.bitbucket.b_c:jose4j:0.9.6",
+    )
+
+    // Handles the patching of the Android Gradle Plugin
+    dependencies {
+        for (securityBom in gradle.extra["securityBoms"] as List<*>) {
+            classpath(platform(securityBom!!))
+        }
+        constraints {
+            for (securityPatch in gradle.extra["securityPatches"] as List<*>) {
+                classpath(securityPatch!!)
+            }
+        }
+    }
+}
+
+// Handles the patching of the Android UTP (Unified Test Platform) and Android Lint
+configurations.named { it.startsWith("unified-test-platform") || it == "androidLintTool" }.configureEach {
+    dependencies {
+        for (securityBom in gradle.extra["securityBoms"] as List<*>) {
+            add(name, platform(securityBom!!))
+        }
+        constraints {
+            for (securityPatch in gradle.extra["securityPatches"] as List<*>) {
+                add(name, securityPatch!!)
+            }
+        }
+    }
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(11))
